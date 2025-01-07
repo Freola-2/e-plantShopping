@@ -257,10 +257,10 @@ const handlePlantsClick = (e) => {
     setShowCart(false); // Hide the cart when navigating to About Us
 };
 
-   const handleContinueShopping = (e) => {
-    e.preventDefault();
-    setShowCart(false);
-  };
+const handleContinueShopping = () => {
+    setShowCart(false); // Hide the cart and return to the product list
+};
+  
     return (
         <div>
              <div className="navbar" style={styleObj}>

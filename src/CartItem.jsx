@@ -4,12 +4,22 @@ import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
-  const cart = useSelector(state => state.cart.items);
-  const totalCost = useSelector(state => state.cart.totalCost);
+  const cart = useSelector(state => state.cart.items); // Get cart items from Redux
   const dispatch = useDispatch();
 
+  // Calculate the total amount for all products in the cart
+  const calculateTotalAmount = () => {
+    return cart.reduce((total, item) => {
+      const itemCost = parseFloat(item.cost.replace('$', '')); // Convert cost to number
+      return total + itemCost * item.quantity;
+    }, 0).toFixed(2); // Keep the total to two decimal places
+  };
+
+  // Handle the Continue Shopping button click
   const handleContinueShopping = () => {
-    onContinueShopping();
+    if (typeof onContinueShopping === 'function') {
+      onContinueShopping(); // Call the passed-in function to return to the product list
+    }
   };
 
   const handleIncrement = (item) => {
@@ -28,7 +38,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   return (
     <div className="cart-container">
-      <h2 style={{ color: 'black' }}>Total Cart Amount: ${totalCost.toFixed(2)}</h2>
+      <h2 style={{ color: 'black' }}>Total Cart Amount: ${calculateTotalAmount()}</h2>
       <div>
         {cart.map(item => (
           <div className="cart-item" key={item.name}>
