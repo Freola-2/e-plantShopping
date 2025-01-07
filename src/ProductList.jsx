@@ -260,10 +260,11 @@ const handlePlantsClick = (e) => {
 const handleContinueShopping = () => {
     setShowCart(false); // Hide the cart and return to the product list
 };
-  
+
+
     return (
         <div>
-             <div className="navbar" style={styleObj}>
+            <div className="navbar" style={styleObj}>
             <div className="tag">
                <div className="luxury">
                <img src="https://cdn.pixabay.com/photo/2020/08/05/13/12/eco-5465432_1280.png" alt="" />
