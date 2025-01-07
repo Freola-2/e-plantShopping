@@ -9,7 +9,12 @@ function ProductList() {
     const [addedToCart, setAddedToCart] = useState({});
     const dispatch = useDispatch();
     const handleAddToCart = (product) => {
-          dispatch(addItem(product));
+            dispatch(addItem({
+                name: product.name,
+                image: product.image,
+                cost: product.cost,
+                }
+            ));
           setAddedToCart((prevState) => ({
            ...prevState,
            [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
