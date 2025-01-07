@@ -4,7 +4,7 @@ import CartItem from './CartItem';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-
+    const [addedToCart, setAddedToCart] = useState({});
     const plantsArray = [
         {
             category: "Air Purifying Plants",
@@ -268,7 +268,15 @@ const handlePlantsClick = (e) => {
         </div>
         {!showCart? (
         <div className="product-grid">
-
+            {plantsArray[0].plants.map((plant, index) => (
+                <div key={index} className="plant-item">
+                    <img src={plant.image} alt={plant.name} />
+                    <h3>{plant.name}</h3>
+                    <p>{plant.description}</p>
+                    <p>{plant.cost}</p>
+                    <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                </div>
+    ))}
 
         </div>
  ) :  (
